@@ -1,0 +1,11 @@
+{
+  "slug": "engineeringclassic",
+  "name": "Engineering Classic",
+  "category": "technical",
+  "description": "RenderCV engineeringclassic — more whitespace than Engineering Resumes. Preferred for senior SWE roles where readability beats density.",
+  "thumbnailUrl": "/templates/preview.svg",
+  "sourceUrl": "https://github.com/rendercv/rendercv",
+  "latexSource": "\\documentclass[11pt,letterpaper]{article}\n\\usepackage[margin=0.65in]{geometry}\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage{enumitem}\n\\usepackage{titlesec}\n\\usepackage{hyperref}\n\\usepackage{parskip}\n\\pagestyle{empty}\n\\setlist[itemize]{leftmargin=1.15em, itemsep=2.4pt, topsep=3pt}\n\\titleformat{\\section}{\\bfseries\\large}{}{0em}{}[\\vspace{1pt}\\titlerule]\n\\titlespacing*{\\section}{0pt}{12pt}{6pt}\n\\hypersetup{colorlinks=true, urlcolor=black}\n\\begin{document}\n\\begin{center}\n{\\LARGE\\bfseries {{fullName}}}\\\\[3pt]\n{\\small {{contactLine}}}\n\\end{center}\n{{summaryBlock}}\n\\section*{Experience}\n{{experienceBlock}}\n{{projectsBlock}}\n\\section*{Education}\n{{educationBlock}}\n\\section*{Skills}\n{{skillsBlock}}\n{{codingBlock}}\n{{certificationsBlock}}\n\\end{document}",
+  "sortOrder": 5,
+  "published": true
+}

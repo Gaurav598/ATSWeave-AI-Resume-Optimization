@@ -1,0 +1,202 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Print-studio theme: warm paper, walnut desk, copper type.
+  Light = atelier. Dark = night studio. Neither is a blank white page.
+*/
+:root {
+  --background: #e9dfd2;
+  --foreground: #1c1410;
+  --card: #f6efe4;
+  --card-foreground: #1c1410;
+  --muted: #ddd0c0;
+  --muted-foreground: #6b5b4e;
+  --border: #d2c3b1;
+  --accent: #c45c26;
+  --accent-foreground: #fff8f0;
+  --ring: #c45c26;
+  --secondary: #e3d6c6;
+  --secondary-foreground: #1c1410;
+  --paper: #ffffff;
+  --desk: #3a2418;
+  --ink: #14110e;
+  --ink-foreground: #f6efe4;
+  --success: #3f7a4e;
+  --success-soft: #e8f3ea;
+}
+
+.dark {
+  --background: #0c0e14;
+  --foreground: #f3ece3;
+  --card: #161922;
+  --card-foreground: #f3ece3;
+  --muted: #1e232e;
+  --muted-foreground: #a89b8c;
+  --border: #2a3140;
+  --accent: #e8b86d;
+  --accent-foreground: #1a1408;
+  --ring: #e8b86d;
+  --secondary: #1e232e;
+  --secondary-foreground: #f3ece3;
+  --paper: #ffffff;
+  --desk: #16100c;
+  --ink: #07080c;
+  --ink-foreground: #f6efe4;
+  --success: #5ee0a0;
+  --success-soft: #0d2a1c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-ring: var(--ring);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-paper: var(--paper);
+  --color-desk: var(--desk);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "SFMono-Regular", Menlo, monospace;
+  --font-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+}
+
+body {
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.55;
+  letter-spacing: -0.011em;
+  background-color: var(--background);
+  background-image:
+    radial-gradient(ellipse 90% 55% at 12% -10%, rgba(196, 92, 38, 0.22), transparent 58%),
+    radial-gradient(ellipse 70% 45% at 100% 0%, rgba(28, 20, 16, 0.14), transparent 52%),
+    radial-gradient(ellipse 50% 30% at 50% 100%, rgba(196, 92, 38, 0.08), transparent 55%);
+  background-attachment: fixed;
+}
+
+.dark body,
+.dark {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 8% -8%, rgba(232, 184, 109, 0.16), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(90, 140, 255, 0.08), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 50% 110%, rgba(232, 184, 109, 0.07), transparent 55%);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.048em;
+}
+
+.paper-shadow {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.65) inset,
+    0 18px 40px -18px rgba(28, 20, 16, 0.45),
+    0 8px 18px -12px rgba(196, 92, 38, 0.28);
+}
+
+.dark .paper-shadow {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 28px 50px -18px rgba(0, 0, 0, 0.75);
+}
+
+.surface-mesh {
+  background:
+    radial-gradient(ellipse 70% 50% at 80% -10%, rgba(196, 92, 38, 0.22), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 8% 0%, rgba(232, 184, 109, 0.14), transparent 50%);
+}
+
+.dark .surface-mesh {
+  background:
+    radial-gradient(ellipse 70% 50% at 80% -10%, rgba(232, 184, 109, 0.16), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 8% 0%, rgba(96, 165, 250, 0.08), transparent 50%);
+}
+
+.surface-grid {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(196, 92, 38, 0.12), transparent),
+    linear-gradient(to right, rgba(28, 20, 16, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(28, 20, 16, 0.05) 1px, transparent 1px);
+  background-size: auto, 56px 56px, 56px 56px;
+}
+
+.dark .surface-grid {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(232, 184, 109, 0.08), transparent),
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.desk-wood {
+  background-color: var(--desk);
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 11px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.18) 0px,
+      transparent 1px,
+      transparent 7px,
+      rgba(0, 0, 0, 0.1) 8px
+    ),
+    radial-gradient(ellipse 80% 70% at 50% 0%, rgba(232, 184, 109, 0.16), transparent 60%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.25), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.4));
+}
+
+.glass-panel {
+  background: color-mix(in srgb, var(--card) 78%, transparent);
+  backdrop-filter: blur(18px);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(196, 92, 38, 0.28), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: color-mix(in srgb, var(--accent) 10%, var(--card));
+  padding: 0.3rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  box-shadow: 0 1px 2px rgba(28, 20, 16, 0.06);
+}

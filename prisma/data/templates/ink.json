@@ -1,0 +1,11 @@
+{
+  "slug": "ink",
+  "name": "Ink",
+  "category": "modern",
+  "description": "RenderCV Ink theme — contemporary single-column typography. Real published example from the RenderCV docs.",
+  "thumbnailUrl": "/templates/preview.svg",
+  "sourceUrl": "https://github.com/rendercv/rendercv",
+  "latexSource": "\\documentclass[10.5pt,letterpaper]{article}\n\\usepackage[margin=0.6in]{geometry}\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage{enumitem}\n\\usepackage{titlesec}\n\\usepackage{hyperref}\n\\usepackage{parskip}\n\\pagestyle{empty}\n\\setlist[itemize]{leftmargin=1.1em, itemsep=2pt, topsep=2pt}\n\\titleformat{\\section}{\\bfseries\\small\\uppercase}{}{0em}{}[\\vspace{1pt}\\hrule height 0.5pt]\n\\titlespacing*{\\section}{0pt}{10pt}{5pt}\n\\hypersetup{colorlinks=true, urlcolor=black}\n\\begin{document}\n{\\Huge\\bfseries {{fullName}}}\\\\[4pt]\n{\\small {{contactLine}}}\n\\vspace{6pt}\n\\hrule height 1pt\n{{summaryBlock}}\n\\section*{Skills}\n{{skillsBlock}}\n{{codingBlock}}\n\\section*{Experience}\n{{experienceBlock}}\n{{projectsBlock}}\n\\section*{Education}\n{{educationBlock}}\n{{certificationsBlock}}\n\\end{document}",
+  "sortOrder": 8,
+  "published": true
+}

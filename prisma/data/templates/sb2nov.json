@@ -1,0 +1,11 @@
+{
+  "slug": "sb2nov",
+  "name": "sb2nov (Sourabh Bajaj)",
+  "category": "classic",
+  "description": "The original Sourabh Bajaj resume that Jake's was based on. Real Google / Coursera engineer layout. MIT licensed.",
+  "thumbnailUrl": "/templates/preview.svg",
+  "sourceUrl": "https://github.com/sb2nov/resume",
+  "latexSource": "\\documentclass[letterpaper,11pt]{article}\n\\usepackage[empty]{fullpage}\n\\usepackage{titlesec}\n\\usepackage{enumitem}\n\\usepackage[hidelinks]{hyperref}\n\\usepackage{fancyhdr}\n\\usepackage{tabularx}\n\\pagestyle{fancy}\n\\fancyhf{}\n\\fancyfoot{}\n\\renewcommand{\\headrulewidth}{0pt}\n\\renewcommand{\\footrulewidth}{0pt}\n\\addtolength{\\oddsidemargin}{-0.5in}\n\\addtolength{\\evensidemargin}{-0.5in}\n\\addtolength{\\textwidth}{1in}\n\\addtolength{\\topmargin}{-.5in}\n\\addtolength{\\textheight}{1.0in}\n\\urlstyle{same}\n\\raggedbottom\n\\raggedright\n\\setlength{\\tabcolsep}{0in}\n\\titleformat{\\section}{\\vspace{-4pt}\\scshape\\raggedright\\large}{}{0em}{}[\\titlerule \\vspace{-5pt}]\n\\newcommand{\\resumeItem}[1]{\\item\\small{#1 \\vspace{-2pt}}}\n\\newcommand{\\resumeSubheading}[4]{\\vspace{-2pt}\\item\\begin{tabular*}{0.97\\textwidth}[t]{l@{\\extracolsep{\\fill}}r}\\textbf{#1} & #2 \\\\\\\\ \\textit{\\small#3} & \\textit{\\small #4} \\\\\\end{tabular*}\\vspace{-7pt}}\n\\newcommand{\\resumeProjectHeading}[2]{\\item\\begin{tabular*}{0.97\\textwidth}{l@{\\extracolsep{\\fill}}r}\\small#1 & #2 \\\\\\end{tabular*}\\vspace{-7pt}}\n\\newcommand{\\resumeSubHeadingListStart}{\\begin{itemize}[leftmargin=0.15in, label={}]}\n\\newcommand{\\resumeSubHeadingListEnd}{\\end{itemize}}\n\\newcommand{\\resumeItemListStart}{\\begin{itemize}}\n\\newcommand{\\resumeItemListEnd}{\\end{itemize}\\vspace{-5pt}}\n\\begin{document}\n\\begin{center}\n{\\Huge\\bfseries {{fullName}}} \\\\[4pt]\n{\\small {{contactLine}}}\n\\end{center}\n{{summaryBlock}}\n\\section{Education}\n{{educationBlock}}\n\\section{Experience}\n{{experienceBlock}}\n{{projectsBlock}}\n\\section{Technical Skills}\n{{skillsBlock}}\n{{codingBlock}}\n{{certificationsBlock}}\n\\end{document}",
+  "sortOrder": 1,
+  "published": true
+}

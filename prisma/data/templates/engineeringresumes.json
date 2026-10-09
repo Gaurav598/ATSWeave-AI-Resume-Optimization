@@ -1,0 +1,11 @@
+{
+  "slug": "engineeringresumes",
+  "name": "Engineering Resumes",
+  "category": "technical",
+  "description": "Dense single-column format from RenderCV's engineeringresumes theme — the layout recommended by r/EngineeringResumes for SWE hiring.",
+  "thumbnailUrl": "/templates/preview.svg",
+  "sourceUrl": "https://github.com/rendercv/rendercv",
+  "latexSource": "\\documentclass[10pt,letterpaper]{article}\n\\usepackage[margin=0.55in]{geometry}\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage{enumitem}\n\\usepackage{titlesec}\n\\usepackage{hyperref}\n\\usepackage{parskip}\n\\pagestyle{empty}\n\\setlist[itemize]{leftmargin=1.05em, itemsep=1.4pt, topsep=1.5pt}\n\\titleformat{\\section}{\\bfseries\\normalsize}{}{0em}{}[\\titlerule]\n\\titlespacing*{\\section}{0pt}{8pt}{4pt}\n\\hypersetup{colorlinks=true, urlcolor=black}\n\\begin{document}\n{\\LARGE\\bfseries {{fullName}}}\\\\[2pt]\n{\\footnotesize {{contactLine}}}\n{{summaryBlock}}\n\\section*{Experience}\n{{experienceBlock}}\n{{projectsBlock}}\n\\section*{Education}\n{{educationBlock}}\n\\section*{Skills}\n{{skillsBlock}}\n{{codingBlock}}\n{{certificationsBlock}}\n\\end{document}",
+  "sortOrder": 2,
+  "published": true
+}

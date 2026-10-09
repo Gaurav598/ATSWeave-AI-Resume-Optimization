@@ -1,0 +1,11 @@
+{
+  "slug": "moderncv",
+  "name": "ModernCV",
+  "category": "modern",
+  "description": "Inspired by the classic ModernCV LaTeX class (one of the oldest CV packages). Left-aligned modern header, still single-column for ATS.",
+  "thumbnailUrl": "/templates/preview.svg",
+  "sourceUrl": "https://github.com/rendercv/rendercv",
+  "latexSource": "\\documentclass[10.5pt,letterpaper]{article}\n\\usepackage[margin=0.6in]{geometry}\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage{enumitem}\n\\usepackage{titlesec}\n\\usepackage{hyperref}\n\\usepackage{parskip}\n\\usepackage{xcolor}\n\\pagestyle{empty}\n\\definecolor{cvblue}{HTML}{1F4E79}\n\\setlist[itemize]{leftmargin=1.1em, itemsep=2pt, topsep=2pt}\n\\titleformat{\\section}{\\color{cvblue}\\bfseries\\large}{}{0em}{}[{\\color{cvblue}\\titlerule}]\n\\titlespacing*{\\section}{0pt}{10pt}{5pt}\n\\hypersetup{colorlinks=true, urlcolor=black}\n\\begin{document}\n{\\Huge\\bfseries {{fullName}}}\\\\[3pt]\n{\\small {{contactLine}}}\n{{summaryBlock}}\n\\section*{Experience}\n{{experienceBlock}}\n\\section*{Education}\n{{educationBlock}}\n{{projectsBlock}}\n\\section*{Skills}\n{{skillsBlock}}\n{{codingBlock}}\n{{certificationsBlock}}\n\\end{document}",
+  "sortOrder": 4,
+  "published": true
+}

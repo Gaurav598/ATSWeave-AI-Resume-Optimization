@@ -1,0 +1,11 @@
+{
+  "slug": "deedy-safe",
+  "name": "Deedy (ATS-Safe)",
+  "category": "creative-but-ats-safe",
+  "description": "Visual inspired by Debarghya Das's famous Deedy Resume (5k+ GitHub stars). Original is two-column; this version is flattened to single-column so ATS parsers don't break.",
+  "thumbnailUrl": "/templates/preview.svg",
+  "sourceUrl": "https://github.com/deedy/Deedy-Resume",
+  "latexSource": "\\documentclass[10.5pt,letterpaper]{article}\n\\usepackage[margin=0.55in]{geometry}\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage{enumitem}\n\\usepackage{titlesec}\n\\usepackage{hyperref}\n\\usepackage{parskip}\n\\usepackage{xcolor}\n\\pagestyle{empty}\n\\definecolor{ink}{HTML}{0F172A}\n\\setlist[itemize]{leftmargin=1.05em, itemsep=1.6pt, topsep=2pt}\n\\titleformat{\\section}{\\color{ink}\\bfseries\\normalsize\\uppercase}{}{0em}{}[{\\color{ink}\\hrule height 0.9pt}]\n\\titlespacing*{\\section}{0pt}{10pt}{5pt}\n\\hypersetup{colorlinks=true, urlcolor=black}\n\\begin{document}\n{\\Huge\\bfseries {{fullName}}}\\\\[3pt]\n{\\small {{contactLine}}}\n\\vspace{5pt}\n{\\color{ink}\\rule{0.28\\textwidth}{2.2pt}}\n{{summaryBlock}}\n\\section*{Experience}\n{{experienceBlock}}\n{{projectsBlock}}\n\\section*{Education}\n{{educationBlock}}\n\\section*{Skills}\n{{skillsBlock}}\n{{codingBlock}}\n{{certificationsBlock}}\n\\end{document}",
+  "sortOrder": 7,
+  "published": true
+}

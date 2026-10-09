@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 1100" role="img" aria-labelledby="title">
+  <title id="title">ATSWeave resume template preview</title>
+  <rect width="850" height="1100" fill="#f6f3eb"/>
+  <rect x="125" y="80" width="600" height="940" rx="12" fill="#fff" stroke="#d8d4ca"/>
+  <rect x="190" y="155" width="310" height="30" rx="5" fill="#20324a"/>
+  <rect x="190" y="205" width="460" height="13" rx="5" fill="#b1bbc6"/>
+  <rect x="190" y="274" width="160" height="18" rx="4" fill="#486f89"/>
+  <path d="M190 310h470" stroke="#b1bbc6" stroke-width="3"/>
+  <rect x="190" y="338" width="410" height="13" rx="5" fill="#d4dbe1"/>
+  <rect x="190" y="370" width="455" height="13" rx="5" fill="#d4dbe1"/>
+  <rect x="190" y="402" width="385" height="13" rx="5" fill="#d4dbe1"/>
+  <rect x="190" y="488" width="160" height="18" rx="4" fill="#486f89"/>
+  <path d="M190 524h470" stroke="#b1bbc6" stroke-width="3"/>
+  <rect x="190" y="554" width="420" height="13" rx="5" fill="#d4dbe1"/>
+  <rect x="190" y="586" width="455" height="13" rx="5" fill="#d4dbe1"/>
+  <rect x="190" y="618" width="375" height="13" rx="5" fill="#d4dbe1"/>
+  <rect x="190" y="708" width="160" height="18" rx="4" fill="#486f89"/>
+  <path d="M190 744h470" stroke="#b1bbc6" stroke-width="3"/>
+  <rect x="190" y="774" width="430" height="13" rx="5" fill="#d4dbe1"/>
+  <rect x="190" y="806" width="390" height="13" rx="5" fill="#d4dbe1"/>
+</svg>

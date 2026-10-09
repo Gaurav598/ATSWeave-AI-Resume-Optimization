@@ -1,0 +1,11 @@
+{
+  "slug": "classic",
+  "name": "RenderCV Classic",
+  "category": "classic",
+  "description": "RenderCV classic theme — professional typography used across thousands of real CVs. Clean, ATS-parseable single column.",
+  "thumbnailUrl": "/templates/preview.svg",
+  "sourceUrl": "https://github.com/rendercv/rendercv",
+  "latexSource": "\\documentclass[11pt,letterpaper]{article}\n\\usepackage[margin=0.7in]{geometry}\n\\usepackage[T1]{fontenc}\n\\usepackage{lmodern}\n\\usepackage{enumitem}\n\\usepackage{titlesec}\n\\usepackage{hyperref}\n\\usepackage{parskip}\n\\pagestyle{empty}\n\\setlist[itemize]{leftmargin=1.15em, itemsep=2pt, topsep=3pt}\n\\titleformat{\\section}{\\large\\bfseries}{}{0em}{}[\\titlerule]\n\\titlespacing*{\\section}{0pt}{11pt}{5pt}\n\\hypersetup{colorlinks=true, urlcolor=black}\n\\begin{document}\n\\begin{center}\n{\\LARGE\\bfseries {{fullName}}}\\\\[4pt]\n{\\small {{contactLine}}}\n\\end{center}\n{{summaryBlock}}\n\\section*{Experience}\n{{experienceBlock}}\n\\section*{Education}\n{{educationBlock}}\n{{projectsBlock}}\n\\section*{Skills}\n{{skillsBlock}}\n{{codingBlock}}\n{{certificationsBlock}}\n\\end{document}",
+  "sortOrder": 3,
+  "published": true
+}
