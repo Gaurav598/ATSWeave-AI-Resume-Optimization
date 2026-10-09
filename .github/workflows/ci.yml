@@ -31,6 +31,7 @@ jobs:
       - run: npm run db:generate
       - run: npx prisma db push --skip-generate
       - run: node --import tsx prisma/seed.ts
+      - run: npx next typegen
       - run: npx tsc --noEmit
       - run: node --import tsx scripts/verify-pipeline.ts
       - run: npm run build -- --webpack
