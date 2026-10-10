@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { listPublishedTemplates } from "@/lib/templates";
+
+export const dynamic = "force-dynamic";
 import { MarketingHeader } from "@/components/marketing-header";
 import { TemplateThumbnail } from "@/components/gallery/template-thumbnail";
 import { SignInButton } from "@/components/sign-in-button";

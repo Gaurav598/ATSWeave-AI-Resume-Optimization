@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTemplateByIdOrSlug } from "@/lib/templates";
+
+export const dynamic = "force-dynamic";
 import { MarketingHeader } from "@/components/marketing-header";
 import { TemplateThumbnail } from "@/components/gallery/template-thumbnail";
 import { TemplateUseActions } from "@/components/templates/template-use-actions";

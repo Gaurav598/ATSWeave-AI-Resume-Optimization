@@ -20,5 +20,22 @@ services:
     ports:
       - "8080:8080"
 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://atsweave_dev:atsweave_dev@postgres:5432/atsweave_dev
+      - REDIS_URL=redis://redis:6379
+      - NEXT_PUBLIC_SITE_URL=http://localhost:3000
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+      - latex
+
 volumes:
   pgdata:
