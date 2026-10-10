@@ -20,9 +20,7 @@ export function MarketingHeader({
     <header className="sticky top-0 z-40 border-b border-border/50 bg-background/70 backdrop-blur-2xl">
       <div className="mx-auto flex h-[4.25rem] w-full max-w-6xl items-center justify-between px-6 sm:px-8">
         <Link href="/" className="flex items-center gap-2 text-[15px] font-semibold tracking-tight text-foreground">
-          <span className="grid h-7 w-7 place-items-center rounded-xl bg-accent text-[11px] font-bold text-accent-foreground shadow-[0_8px_16px_-8px_rgba(196,92,38,0.85)]">
-            R
-          </span>
+          <img src="/logo.png" alt="ATSWeave Logo" className="h-7 w-7 rounded-xl object-contain shadow-[0_8px_16px_-8px_rgba(196,92,38,0.85)]" />
           ATSWeave
         </Link>
         <nav className="flex items-center gap-3 text-sm text-muted-foreground sm:gap-4">

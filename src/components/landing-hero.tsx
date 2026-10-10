@@ -54,9 +54,7 @@ export function LandingHero({
       <header className="relative z-20 border-b border-border/40 bg-background/40 backdrop-blur-xl">
         <div className="mx-auto flex h-[4.25rem] w-full max-w-6xl items-center justify-between px-6 sm:px-8">
           <Link href="/" className="flex items-center gap-2.5 text-[15px] font-semibold tracking-tight" suppressHydrationWarning>
-            <span className="grid h-8 w-8 place-items-center rounded-xl bg-accent text-xs font-bold text-accent-foreground shadow-[0_8px_16px_-8px_rgba(196,92,38,0.85)]">
-              R
-            </span>
+            <img src="/logo.png" alt="ATSWeave Logo" className="h-8 w-8 rounded-xl object-contain shadow-[0_8px_16px_-8px_rgba(196,92,38,0.85)]" />
             ATSWeave
           </Link>
           <nav className="flex items-center gap-1 text-sm text-muted-foreground sm:gap-2">
