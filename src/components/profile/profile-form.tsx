@@ -66,9 +66,9 @@ export function ProfileForm({ redirectTo }: { redirectTo?: string }) {
   }
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
+    <div className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-8">
       <p className="eyebrow">Career profile</p>
-      <h1 className="mt-4 font-display text-4xl">Your experience library</h1>
+      <h1 className="mt-4 font-display text-4xl sm:text-5xl">Your experience, in one place.</h1>
       <p className="mt-2 text-muted-foreground">
         Fill this once. AI job matching only ever rewords what you enter. For a manual template,
         import this profile from the editor in one click — templates never silently swap in a
@@ -90,7 +90,7 @@ export function ProfileForm({ redirectTo }: { redirectTo?: string }) {
         ))}
       </div>
 
-      <div className="mt-8 rounded-3xl border border-border bg-card p-6">
+      <div className="glass-panel mt-8 rounded-3xl p-5 sm:p-7">
         {step === 0 && (
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Name (from account)">

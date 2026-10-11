@@ -143,10 +143,10 @@ export function MatchForm({ templateId }: { templateId: string }) {
   };
 
   return (
-    <div className="mx-auto w-full max-w-4xl px-6 py-10 sm:px-8">
+    <div className="mx-auto w-full max-w-5xl px-5 py-12 sm:px-8">
       <p className="eyebrow">AI path</p>
-      <h1 className="mt-4 font-display text-4xl">
-        Build {template?.name ? template.name : "this template"} with your profile
+      <h1 className="mt-4 max-w-3xl font-display text-4xl sm:text-5xl">
+        Match {template?.name ? template.name : "this template"} to the role.
       </h1>
 
       {template?.slug ? (
@@ -174,7 +174,7 @@ export function MatchForm({ templateId }: { templateId: string }) {
         </div>
       )}
 
-      <div className="mt-8 grid gap-3">
+      <div className="glass-panel mt-8 grid gap-4 rounded-3xl p-5 sm:p-7">
         <div className="flex gap-2">
           <input
             className="h-11 flex-1 rounded-xl border border-border bg-background px-3 text-sm"

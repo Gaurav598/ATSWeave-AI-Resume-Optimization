@@ -86,13 +86,14 @@ export function TemplateGallery({
 
   return (
     <div className="relative flex min-h-[calc(100vh-64px)] flex-col overflow-hidden text-foreground">
-      <div className="desk-wood pointer-events-none absolute inset-0" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/50" />
+      <div className="preview-stage pointer-events-none absolute inset-0" />
+      <div className="surface-grid pointer-events-none absolute inset-0 opacity-30" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#101c38]/20 via-transparent to-[#101c38]/35" />
 
       <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col px-3 pb-8 pt-5 sm:px-6">
         <div className="mb-4 text-center md:mb-5">
           <p className="eyebrow">Template gallery</p>
-          <h1 className="mt-3 font-display text-3xl text-[#f6efe4] md:text-4xl">Swipe left or right</h1>
+          <h1 className="mt-3 font-display text-3xl text-white md:text-4xl">Choose your starting point.</h1>
           <p className="mx-auto mt-1.5 max-w-xl text-sm text-white/60">
             Click a resume to edit it. Use the arrows, dots, or press ← → to browse.
           </p>
@@ -180,7 +181,7 @@ export function TemplateGallery({
         {current && (
           <div className="mt-5 flex flex-col items-center gap-3">
             <div className="text-center">
-              <div className="font-display text-2xl text-[#f6efe4] md:text-3xl">{current.name}</div>
+              <div className="font-display text-2xl text-white md:text-3xl">{current.name}</div>
               <div className="mt-2 flex flex-wrap justify-center gap-2">
                 {current.atsSafe && <Badge variant="accent">ATS-Safe</Badge>}
                 <Badge variant="outline">{current.category}</Badge>

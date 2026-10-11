@@ -71,11 +71,11 @@ export default function DashboardPage() {
   });
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
+    <div className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-8">
       <div className="flex items-end justify-between">
         <div>
           <p className="eyebrow">Library</p>
-          <h1 className="mt-4 font-display text-4xl">Saved resumes</h1>
+          <h1 className="mt-4 font-display text-4xl sm:text-5xl">Your resume workspace.</h1>
         </div>
         <Button asChild>
           <Link href="/gallery">New from template</Link>
@@ -108,7 +108,7 @@ export default function DashboardPage() {
           }) => (
           <div
             key={resume.id}
-            className="flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-border bg-card/80 p-5 shadow-[0_16px_32px_-24px_rgba(28,20,16,0.4)] transition hover:border-accent/40"
+            className="lift-card flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-border bg-card/90 p-5 shadow-[0_16px_32px_-24px_rgba(35,55,110,.26)]"
           >
             <Link
               href={`/editor/${resume.id}`}

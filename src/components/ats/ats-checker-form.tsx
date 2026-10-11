@@ -45,11 +45,11 @@ export function AtsCheckerForm() {
   const [result, setResult] = useState<Result | null>(null);
 
   return (
-    <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-10 sm:px-8 lg:grid-cols-[1.05fr_0.95fr]">
+    <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[1.05fr_0.95fr]">
       <div>
         <p className="eyebrow">Free ATS match checker</p>
         <h1 className="mt-4 font-display text-4xl text-foreground md:text-5xl">
-          See how your resume aligns with a job description
+          See where your resume stands.
         </h1>
         <p className="mt-3 max-w-xl text-muted-foreground">
           Works with <strong className="font-medium text-foreground">any resume you already have</strong> — upload a PDF
@@ -57,15 +57,15 @@ export function AtsCheckerForm() {
         </p>
 
         <div className="mt-8 grid gap-4">
-          <label className="grid gap-2">
-            <span className="flex items-center justify-between text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              Job description
+          <div className="grid gap-2">
+            <div className="flex items-center justify-between text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              <label htmlFor="ats-job-description">Job description</label>
               <span className="flex gap-3 normal-case tracking-normal">
                 <button type="button" className="underline-offset-4 hover:underline" onClick={() => setJd("")}>
                   clear sample
                 </button>
               </span>
-            </span>
+            </div>
             <FileDrop
               label="Upload JD PDF"
               fileName={jdFileName}
@@ -79,11 +79,11 @@ export function AtsCheckerForm() {
                 })
               }
             />
-            <Textarea className="min-h-44" value={jd} onChange={(e) => setJd(e.target.value)} />
-          </label>
-          <label className="grid gap-2">
-            <span className="flex items-center justify-between text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              Resume
+            <Textarea id="ats-job-description" className="min-h-44" value={jd} onChange={(e) => setJd(e.target.value)} />
+          </div>
+          <div className="grid gap-2">
+            <div className="flex items-center justify-between text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              <label htmlFor="ats-resume-text">Resume</label>
               <button
                 type="button"
                 className="normal-case tracking-normal underline-offset-4 hover:underline"
@@ -95,7 +95,7 @@ export function AtsCheckerForm() {
               >
                 load sample
               </button>
-            </span>
+            </div>
             <FileDrop
               label="Upload resume PDF"
               fileName={resumeFileName}
@@ -110,6 +110,7 @@ export function AtsCheckerForm() {
               }
             />
             <Textarea
+              id="ats-resume-text"
               className="min-h-56"
               placeholder="Upload a PDF above, or paste resume text here."
               value={resumeText}
@@ -118,7 +119,7 @@ export function AtsCheckerForm() {
                 setResumeFileName(null);
               }}
             />
-          </label>
+          </div>
           <Button
             size="lg"
             disabled={loading || extracting !== null || jd.trim().length < 40 || resumeText.trim().length < 80}
@@ -152,7 +153,7 @@ export function AtsCheckerForm() {
         </div>
       </div>
 
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+      <div className="glass-panel rounded-3xl p-6">
         {!result ? (
           <div className="flex h-full min-h-[360px] flex-col justify-center gap-5">
             <div>

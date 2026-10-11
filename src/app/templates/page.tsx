@@ -25,26 +25,26 @@ export default async function TemplatesIndexPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <MarketingHeader googleConfigured={googleConfigured} demoConfigured={demoConfigured} />
-      <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
+      <main className="ambient-section mx-auto w-full max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
         <p className="eyebrow">Template library</p>
-        <h1 className="mt-4 font-display text-4xl md:text-5xl">
-          Real LaTeX resume templates
+        <h1 className="mt-5 max-w-3xl font-display text-4xl md:text-6xl">
+          Find the right frame for your story.
         </h1>
         <p className="mt-3 max-w-2xl text-muted-foreground">
           Every page below is this template filled with the same labeled example. Open one and you
           edit that exact layout — not a different person, not a different design.
         </p>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {templates.map((template) => (
             <Link
               key={template.id}
               href={`/templates/${template.slug}`}
-              className="group overflow-hidden rounded-3xl border border-border bg-card shadow-[0_18px_40px_-24px_rgba(28,20,16,0.45)] transition hover:-translate-y-1 hover:shadow-[0_22px_48px_-20px_rgba(196,92,38,0.35)]"
+              className="lift-card group overflow-hidden rounded-3xl border border-border bg-card shadow-[0_18px_40px_-24px_rgba(35,55,110,.22)]"
             >
               <TemplateThumbnail
                 slug={template.slug}
                 name={template.name}
-                className="border-b border-border desk-wood"
+                className="preview-stage border-b border-border"
               />
               <div className="p-4">
                 <div className="font-display text-xl">{template.name}</div>

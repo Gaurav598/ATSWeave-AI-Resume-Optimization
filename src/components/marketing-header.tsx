@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { useSession } from "next-auth/react";
+import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SignInButton } from "@/components/sign-in-button";
 import { Button } from "@/components/ui/button";
+import { BrandMark } from "@/components/brand-mark";
 
 export function MarketingHeader({
   googleConfigured = false,
@@ -15,19 +17,17 @@ export function MarketingHeader({
   demoConfigured?: boolean;
 }) {
   const { data: session, status } = useSession();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/50 bg-background/70 backdrop-blur-2xl">
-      <div className="mx-auto flex h-[4.25rem] w-full max-w-6xl items-center justify-between px-6 sm:px-8">
-        <Link href="/" className="flex items-center gap-2 text-[15px] font-semibold tracking-tight text-foreground">
-          <img src="/logo.png" alt="ATSWeave Logo" className="h-7 w-7 rounded-xl object-contain shadow-[0_8px_16px_-8px_rgba(196,92,38,0.85)]" />
-          ATSWeave
-        </Link>
+    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-2xl">
+      <div className="mx-auto flex h-[4.5rem] w-full max-w-7xl items-center justify-between px-5 sm:px-8">
+        <BrandMark />
         <nav className="flex items-center gap-3 text-sm text-muted-foreground sm:gap-4">
-          <Link href="/templates" className="transition hover:text-foreground">
+          <Link href="/templates" className="hidden rounded-full px-2 py-1.5 transition hover:bg-muted hover:text-foreground sm:inline">
             Templates
           </Link>
-          <Link href="/ats-checker" className="transition hover:text-foreground">
+          <Link href="/ats-checker" className="hidden rounded-full px-2 py-1.5 transition hover:bg-muted hover:text-foreground sm:inline">
             ATS Checker
           </Link>
           <ThemeToggle />
@@ -51,8 +51,15 @@ export function MarketingHeader({
               </SignInButton>
             </Suspense>
           )}
+          <button type="button" className="grid h-9 w-9 place-items-center rounded-full text-foreground sm:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
         </nav>
       </div>
+      {menuOpen && <nav aria-label="Mobile navigation" className="grid gap-1 border-t border-border bg-card px-5 py-3 sm:hidden">
+        <Link href="/templates" onClick={() => setMenuOpen(false)} className="rounded-xl px-3 py-2 text-sm font-medium hover:bg-muted">Templates</Link>
+        <Link href="/ats-checker" onClick={() => setMenuOpen(false)} className="rounded-xl px-3 py-2 text-sm font-medium hover:bg-muted">ATS checker</Link>
+      </nav>}
     </header>
   );
 }

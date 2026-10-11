@@ -1,7 +1,8 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { Check, CircleAlert, CircleDashed, LoaderCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -34,6 +35,7 @@ type ResumePayload = {
   title: string;
   contentJson: ResumeContent;
   sourceContentJson?: ResumeContent | null;
+  atsBreakdown?: AtsBreakdown | null;
   matchedKeywords?: { matched?: string[]; missing?: string[] } | null;
   template?: { slug: string; name: string } | null;
 };
@@ -47,6 +49,8 @@ export function GenerateView({ resumeId, jobId }: { resumeId: string; jobId: str
   const [done, setDone] = useState(false);
   const [provider, setProvider] = useState<string | null>(null);
   const [failure, setFailure] = useState<string | null>(null);
+  const [progress, setProgress] = useState(0);
+  const reduceMotion = useReducedMotion();
   const settled = useRef(false);
 
   const finish = (nextFailure?: string) => {
@@ -77,10 +81,14 @@ export function GenerateView({ resumeId, jobId }: { resumeId: string; jobId: str
         return;
       }
       if (event.type === "step") {
+        if (!GENERATION_STEPS.some((step) => step.id === event.step) || !["running", "done", "error"].includes(String(event.status))) return;
         setSteps((prev) => ({
           ...prev,
           [event.step as GenerationStep]: event.status as StepStatus,
         }));
+      }
+      if (event.type === "step" && event.status === "done") {
+        setProgress((current) => Math.max(current, Math.round((GENERATION_STEPS.findIndex((step) => step.id === event.step) + 1) / GENERATION_STEPS.length * 100)));
       }
       if (event.type === "provider") setProvider(event.id as string);
       if (event.type === "keywords") setKeywords(event.keywords as string[]);
@@ -102,18 +110,32 @@ export function GenerateView({ resumeId, jobId }: { resumeId: string; jobId: str
     };
 
     // Durable fallback: resolves the run even if the stream never connects.
-    const poll = setInterval(async () => {
+    const checkStatus = async () => {
       if (settled.current) return;
       try {
         const res = await fetch(`/api/generate/status?jobId=${jobId}`, { cache: "no-store" });
         if (!res.ok) return;
-        const job = (await res.json()) as { status: string; error?: string | null };
+        const job = (await res.json()) as { status: string; step?: string; progress?: number; error?: string | null };
+        if (typeof job.progress === "number") setProgress(Math.max(0, Math.min(100, job.progress)));
+        const currentIndex = GENERATION_STEPS.findIndex((step) => step.id === job.step);
+        if (currentIndex >= 0 || job.status === "done") {
+          setSteps((previous) => {
+            const next = { ...previous };
+            GENERATION_STEPS.forEach((step, index) => {
+              if (job.status === "done" || index < currentIndex) next[step.id] = "done";
+              else if (index === currentIndex && next[step.id] === "idle" && job.status === "running") next[step.id] = "running";
+            });
+            return next;
+          });
+        }
         if (job.status === "done") finish();
         if (job.status === "error") finish(job.error || "Generation failed");
       } catch {
         // transient — try again on the next tick
       }
-    }, 2500);
+    };
+    void checkStatus();
+    const poll = setInterval(checkStatus, 2500);
 
     return () => {
       clearInterval(poll);
@@ -137,13 +159,16 @@ export function GenerateView({ resumeId, jobId }: { resumeId: string; jobId: str
     enabled: Boolean(resume?.contentJson),
   });
 
-  const ring = score?.score ?? 0;
+  const breakdown = score ?? resume?.atsBreakdown ?? null;
+  const scoreValue = breakdown?.score ?? 0;
+  const activeStep = GENERATION_STEPS.find((step) => steps[step.id] === "running");
 
   return (
-    <div className="relative min-h-[calc(100vh-64px)] overflow-hidden px-6 py-8 sm:px-8">
+    <div className="ambient-section relative min-h-[calc(100vh-64px)] px-6 py-10 sm:px-8">
       <div className="relative z-10 mx-auto w-full max-w-6xl">
         <p className="eyebrow">Generation pipeline</p>
-        <h1 className="mt-4 font-display text-4xl">Tailoring without inventing.</h1>
+        <h1 className="mt-4 font-display text-4xl sm:text-5xl">Your resume is taking shape.</h1>
+        <p className="mt-3 max-w-2xl text-muted-foreground">We match your real experience to the role, check every claim, and render the final PDF. Each stage below follows the live job state.</p>
 
         {provider === "mock" ? (
           <div className="mt-6 rounded-2xl border border-border bg-muted/40 p-4 text-sm text-muted-foreground">
@@ -168,36 +193,44 @@ export function GenerateView({ resumeId, jobId }: { resumeId: string; jobId: str
           </div>
         ) : null}
 
-        <div className="mt-8 grid gap-3">
+        <div className="glass-panel mt-8 overflow-hidden rounded-[28px]">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-5 sm:px-7">
+            <div><p className="text-xs font-bold uppercase tracking-[.16em] text-accent">Live build</p>
+              <h2 aria-live="polite" className="mt-1 font-display text-xl">{failure ? "The run stopped" : done ? "Your resume is ready" : activeStep?.label ?? "Waiting for the run"}</h2></div>
+            <span className="rounded-full border border-border bg-muted px-3 py-1.5 font-mono text-xs tabular-nums text-muted-foreground">{progress}%</span>
+          </div>
+          <div className="h-1.5 bg-muted" role="progressbar" aria-label="Generation progress" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
+            <motion.div className="h-full bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-400" animate={{ width: `${progress}%` }} transition={reduceMotion ? { duration: 0 } : { duration: .45, ease: "easeOut" }} />
+          </div>
+          <ol className="grid gap-3 p-4 sm:grid-cols-2 sm:p-6 lg:grid-cols-3">
           {GENERATION_STEPS.map((step) => {
             const status = steps[step.id];
             return (
-              <div
+              <motion.li
                 key={step.id}
+                layout={!reduceMotion}
                 className={cn(
-                  "flex items-center justify-between rounded-2xl border border-border bg-card/80 px-4 py-3",
-                  status === "running" && "border-accent/40",
+                  "relative flex min-h-[100px] items-center gap-3 overflow-hidden rounded-2xl border border-border bg-card px-4 py-4",
+                  status === "running" && "border-accent/60 bg-accent/5 shadow-[0_14px_30px_-22px_rgba(79,70,229,.6)]",
+                  status === "done" && "border-success/25",
                   status === "error" && "border-red-500/40",
                 )}
               >
-                <span>{step.label}</span>
-                <span
-                  className={cn(
-                    "text-xs uppercase tracking-widest text-muted-foreground",
-                    status === "error" && "text-red-600 dark:text-red-400",
-                  )}
-                >
-                  {status === "idle" ? (failure ? "skipped" : "queued") : status}
+                {status === "running" && !reduceMotion && <motion.span aria-hidden className="pointer-events-none absolute inset-0 rounded-2xl border border-accent/70" animate={{ opacity: [.3, 1, .3] }} transition={{ duration: 1.8, repeat: Infinity }} />}
+                <span className={cn("grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-muted text-muted-foreground", status === "running" && "bg-accent/15 text-accent", status === "done" && "bg-success-soft text-success", status === "error" && "bg-red-500/10 text-red-600")}>
+                  {status === "done" ? <Check className="h-5 w-5" /> : status === "running" ? <LoaderCircle className={cn("h-5 w-5", !reduceMotion && "animate-spin")} /> : status === "error" ? <CircleAlert className="h-5 w-5" /> : <CircleDashed className="h-5 w-5" />}
                 </span>
-              </div>
+                <span className="min-w-0"><span className="block text-sm font-semibold">{step.label}</span><span className="mt-1 block text-[11px] font-bold uppercase tracking-[.13em] text-muted-foreground">{status === "idle" ? (failure ? "Not reached" : "Queued") : status === "done" ? "Complete" : status === "running" ? "In progress" : "Stopped"}</span></span>
+              </motion.li>
             );
           })}
+          </ol>
         </div>
 
         {keywords.length > 0 && (
           <div className="mt-6 flex flex-wrap gap-2">
             {keywords.map((keyword) => (
-              <motion.div key={keyword} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+              <motion.div key={keyword} initial={reduceMotion ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
                 <Badge variant="accent">{keyword}</Badge>
               </motion.div>
             ))}
@@ -212,18 +245,18 @@ export function GenerateView({ resumeId, jobId }: { resumeId: string; jobId: str
           </div>
         )}
 
-        {done && score && (
+        {done && breakdown && (
           <div className="mt-10 grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
             <div className="grid place-items-start rounded-3xl border border-border bg-card p-8">
               <div className="mx-auto">
                 <div
                   className="grid h-40 w-40 place-items-center rounded-full"
                   style={{
-                    background: `conic-gradient(var(--accent) ${ring * 3.6}deg, var(--border) 0deg)`,
+                    background: `conic-gradient(var(--accent) ${scoreValue * 3.6}deg, var(--border) 0deg)`,
                   }}
                 >
                   <div className="grid h-28 w-28 place-items-center rounded-full bg-card font-display text-3xl">
-                    {ring}
+                    {scoreValue}
                   </div>
                 </div>
               </div>
@@ -231,8 +264,8 @@ export function GenerateView({ resumeId, jobId }: { resumeId: string; jobId: str
                 Keyword match against this job description
               </p>
               <p className="mt-2 w-full text-center text-xs text-muted-foreground">
-                Keywords {score.keywordCoverage}% · Must-have {score.mustHaveCoverage}% · Sections{" "}
-                {score.sectionScore}%
+                Keywords {breakdown.keywordCoverage}% · Must-have {breakdown.mustHaveCoverage}% · Sections{" "}
+                {breakdown.sectionScore}%
               </p>
               <p className="mt-4 w-full text-center text-[11px] leading-relaxed text-muted-foreground">
                 Our own keyword and structure analysis — not a score from Workday, Taleo, or any

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { LayoutGrid, Files, UserRound, LogOut, Gauge, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { BrandMark } from "@/components/brand-mark";
 
 const links = [
   { href: "/gallery", label: "Gallery", icon: LayoutGrid },
@@ -27,13 +28,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-40 border-b border-border/50 bg-background/70 backdrop-blur-2xl" suppressHydrationWarning>
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-3 sm:px-6 lg:px-8">
-          <a href="/gallery" className="group flex items-center gap-2.5 text-[15px] font-semibold tracking-tight" suppressHydrationWarning>
-            <img src="/logo.png" alt="ATSWeave Logo" className="h-7 w-7 rounded-xl object-contain shadow-[0_8px_16px_-8px_rgba(196,92,38,0.85)]" />
-            ATSWeave
-          </a>
-          <nav className="hidden items-center gap-0.5 rounded-full border border-border bg-card/70 p-1 sm:flex">
+      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-2xl" suppressHydrationWarning>
+        <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8">
+          <BrandMark href="/gallery" />
+          <nav aria-label="Workspace navigation" className="hidden items-center gap-0.5 rounded-full border border-border bg-card/80 p-1 shadow-sm sm:flex">
             {links.map((link) => {
               const active = mounted && pathname.startsWith(link.href);
               return (

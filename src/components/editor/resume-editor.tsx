@@ -301,7 +301,7 @@ export function ResumeEditor({ resumeId }: { resumeId: string }) {
 
   return (
     <div className="flex h-[calc(100dvh-64px)] flex-col bg-background">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-3 py-2 sm:gap-3 sm:px-4">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-card/85 px-3 py-2 backdrop-blur-xl sm:gap-3 sm:px-4">
         <div className="flex min-w-0 flex-1 items-center gap-2">
           <Input
             key={resume.id}
