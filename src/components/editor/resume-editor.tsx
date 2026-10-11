@@ -61,6 +61,7 @@ export function ResumeEditor({ resumeId }: { resumeId: string }) {
 
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pendingContent = useRef<ResumeContent | null>(null);
+  const seededResumeId = useRef<string | null>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 900px)");
@@ -102,10 +103,11 @@ export function ResumeEditor({ resumeId }: { resumeId: string }) {
   // profile import) set the draft directly; re-running here would overwrite
   // them with the copy that was fetched on load.
   useEffect(() => {
-    if (!resume?.id) return;
+    if (!resume?.id || seededResumeId.current === resume.id) return;
+    seededResumeId.current = resume.id;
     setDraft(resume.contentJson);
     setSaveState("idle");
-  }, [resume?.id]);
+  }, [resume?.id, resume?.contentJson]);
 
   const save = useMutation({
     mutationFn: async (payload: {

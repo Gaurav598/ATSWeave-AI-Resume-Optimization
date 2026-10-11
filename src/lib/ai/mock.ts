@@ -1,14 +1,7 @@
 import type { AIProvider } from "@/lib/ai/provider";
 import { analyzeJobDescriptionHeuristic } from "@/lib/ats/analyze-jd";
-import type { JdAnalysis, ResumeContent, RewriteResult } from "@/lib/types";
+import type { ResumeContent, RewriteResult } from "@/lib/types";
 import { normalizeKeyword } from "@/lib/utils";
-
-function extractKeywords(jd: string): string[] {
-  const analysis = analyzeJobDescriptionHeuristic(jd);
-  return Array.from(
-    new Set([...analysis.mustHaveKeywords, ...analysis.niceToHaveKeywords, ...analysis.hardSkills]),
-  ).slice(0, 24);
-}
 
 function reorderSkills(content: ResumeContent, keywords: string[]): ResumeContent {
   const hay = keywords.map(normalizeKeyword);

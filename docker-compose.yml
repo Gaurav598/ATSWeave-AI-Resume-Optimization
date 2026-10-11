@@ -6,7 +6,7 @@ services:
       POSTGRES_PASSWORD: atsweave_dev
       POSTGRES_DB: atsweave_dev
     ports:
-      - "5432:5432"
+      - "127.0.0.1:55432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 

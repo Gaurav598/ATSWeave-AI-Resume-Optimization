@@ -28,7 +28,7 @@ TypeScript, Tailwind CSS 4, Prisma 6, Auth.js, and React PDF support the app. Th
 
 ## Local setup
 
-Use Node.js 20+, npm, and SQLite. Copy `.env.example` to `.env`. Set `AUTH_SECRET` to a fresh random value and configure Google OAuth (`AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET`) for real sign-in. Its local callback is `http://localhost:3000/api/auth/callback/google`. `AUTH_DEMO_LOGIN=true` is for local demonstrations only. Set `AI_PROVIDER=gemini` and `GEMINI_API_KEY` for Gemini; an empty key selects the rules-based fallback.
+Use Node.js 20+, npm, and PostgreSQL. Start the included development database with `docker compose up -d postgres`, then copy `.env.example` to `.env`. The database listens on `127.0.0.1:55432` to avoid conflicting with another local PostgreSQL server. Set `AUTH_SECRET` to a fresh random value and configure Google OAuth (`AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET`) for real sign-in. Its local callback is `http://localhost:3000/api/auth/callback/google`. `AUTH_DEMO_LOGIN=true` is for local demonstrations only. Set `AI_PROVIDER=gemini` and `GEMINI_API_KEY` for Gemini; an empty key selects the rules-based fallback.
 
 ```bash
 npm ci
